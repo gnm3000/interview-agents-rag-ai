@@ -1,0 +1,14 @@
+[project]
+name = "mcp-fastapi-observability"
+version = "0.1.0"
+description = "Interview project: MCP hub with FastAPI and observability."
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi",
+  "pydantic",
+  "uvicorn",
+  "httpx",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
