@@ -17,6 +17,7 @@ Repositorio “interview-ready” para evaluar en live-coding a un candidato en 
 - Track C – Production Readiness & Observability (03)
 - Track D – GraphRAG Diagnostics (04)
 - Track E – Multimodal Validation & Feedback Loops (05)
+- Track F – MCP avanzado + FastAPI + Observability (06)
 
 ## Skills evaluadas por track
 
@@ -27,6 +28,7 @@ Repositorio “interview-ready” para evaluar en live-coding a un candidato en 
 | 03 | Production AI, retries, cost, observability |
 | 04 | GraphRAG, multi-step reasoning, diagnostics |
 | 05 | Multimodal AI, validation, confidence, feedback |
+| 06 | MCP, FastAPI, observabilidad avanzada, contracts |
 
 ## Expectations (Senior/Staff level)
 
@@ -88,6 +90,7 @@ ai-agents-interview-repo/
     03_prod_ready_observability/
     04_graph_rag_diagnostics/
     05_multimodal_validation_feedback/
+    06_mcp_fastapi_observability/
   scripts/
     setup.sh
     run_project.sh
@@ -433,6 +436,56 @@ Sistema que transforma documentación técnica real (manuales, fotos, diagramas)
 - CA-40: Ninguna respuesta “final” sale sin validation
 - CA-41: Confidence score correlaciona con evidencia real
 - CA-42: Feedback modifica comportamiento futuro (aunque sea simple)
+
+## Proyecto 06: 06_mcp_fastapi_observability (MCP avanzado + FastAPI + observability)
+
+### Skill focus
+
+- Model Context Protocol (capabilities, tools, resources, prompts)
+- Observabilidad (tracing, métricas, redacción de PII)
+- Contratos versionados y compatibilidad
+- Seguridad y control de costos
+
+### Contexto funcional
+
+MCP Hub interno que expone catálogo de tools/resources/prompts y aplica límites por tenant. El candidato debe corregir fallas de observabilidad, validación y paginación, mientras mantiene compatibilidad con clientes existentes.
+
+### Estructura
+
+```
+06_mcp_fastapi_observability/
+  README.md
+  service/
+    main.py
+    routes.py
+    mcp_models.py
+    registry.py
+    observability.py
+    policies.py
+  tests/
+    test_mcp_api.py
+```
+
+### Fallas intencionales
+
+- Capabilities MCP incompletas (no declara prompts/sampling).
+- Redacción de logs incompleta (PII expuesta).
+- Cuotas por tenant no aplicadas a tools.
+- Paginação no determinística ante cambios de catálogo.
+
+### Requisitos funcionales
+
+- RF-60: `initialize` debe exponer capabilities reales.
+- RF-61: `resources/list` con paginación estable y filtros.
+- RF-62: `tools/call` valida inputs con schemas versionados.
+- RF-63: `prompts/list` expone templates por dominio.
+- RF-64: `sampling/limits` devuelve cuotas por tenant.
+
+### Criterios de aceptación
+
+- CA-60: Tests MCP pasan.
+- CA-61: Logs incluyen `trace_id` y `tenant_id`.
+- CA-62: Tool call rechaza payloads inválidos.
 
 ## Guía del entrevistador y rubric (docs/)
 

@@ -1,0 +1,67 @@
+{
+  "resources": [
+    {
+      "id": "incident-runbook",
+      "name": "Incident Runbook",
+      "description": "Runbook operativo para incidentes de producción.",
+      "mime_type": "text/markdown",
+      "version": "2024.10",
+      "tags": ["ops", "runbook"]
+    },
+    {
+      "id": "service-slo",
+      "name": "SLOs Servicio Principal",
+      "description": "SLOs, SLIs y presupuestos de error.",
+      "mime_type": "application/json",
+      "version": "2024.09",
+      "tags": ["slo", "observability"]
+    }
+  ],
+  "tools": [
+    {
+      "id": "create-incident",
+      "name": "Create Incident",
+      "description": "Crea un incidente y notifica al on-call.",
+      "input_schema": {
+        "type": "object",
+        "required": ["severity", "summary"],
+        "properties": {
+          "severity": {"type": "string", "enum": ["sev1", "sev2", "sev3"]},
+          "summary": {"type": "string"},
+          "service": {"type": "string"}
+        }
+      },
+      "version": "1.0"
+    },
+    {
+      "id": "fetch-metrics",
+      "name": "Fetch Metrics",
+      "description": "Consulta métricas agregadas para un servicio.",
+      "input_schema": {
+        "type": "object",
+        "required": ["service", "window_minutes"],
+        "properties": {
+          "service": {"type": "string"},
+          "window_minutes": {"type": "integer", "minimum": 5, "maximum": 1440}
+        }
+      },
+      "version": "1.1"
+    }
+  ],
+  "prompts": [
+    {
+      "id": "incident-summary",
+      "name": "Incident Summary",
+      "description": "Resume un incidente y su impacto.",
+      "template": "Resume el incidente {{incident_id}} en 3 bullet points.",
+      "version": "2024.10"
+    },
+    {
+      "id": "postmortem-draft",
+      "name": "Postmortem Draft",
+      "description": "Genera un borrador de postmortem.",
+      "template": "Genera un postmortem para {{service}} con timeline y acciones.",
+      "version": "2024.10"
+    }
+  ]
+}
