@@ -1,0 +1,20 @@
+[project]
+name = "rag-baseline-broken"
+version = "0.1.0"
+description = "Baseline RAG project for live-coding interviews."
+requires-python = ">=3.10"
+dependencies = [
+  "chromadb",
+  "fastapi",
+  "langchain",
+  "langchain-community",
+  "langchain-core",
+  "langchain-openai",
+  "langchain-text-splitters",
+  "pydantic",
+  "tiktoken",
+  "uvicorn",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
