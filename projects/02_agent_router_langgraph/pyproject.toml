@@ -1,0 +1,13 @@
+[project]
+name = "agent-router-langgraph"
+version = "0.1.0"
+description = "Agent routing graph for interviews."
+requires-python = ">=3.10"
+dependencies = [
+  "langgraph",
+  "langchain-core",
+  "pydantic",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]

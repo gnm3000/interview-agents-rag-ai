@@ -1,0 +1,12 @@
+[project]
+name = "graph-rag-diagnostics"
+version = "0.1.0"
+description = "GraphRAG diagnostics track."
+requires-python = ">=3.10"
+dependencies = [
+  "networkx",
+  "pydantic",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]

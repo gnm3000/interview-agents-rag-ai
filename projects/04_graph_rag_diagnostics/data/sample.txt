@@ -1,0 +1,4 @@
+Project Atlas connects to Project Orion.
+Atlas has owner Alice.
+Orion depends on Phoenix.
+Phoenix is maintained by Bob.

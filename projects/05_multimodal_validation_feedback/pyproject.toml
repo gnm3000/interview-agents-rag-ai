@@ -1,0 +1,15 @@
+[project]
+name = "multimodal-validation-feedback"
+version = "0.1.0"
+description = "Multimodal validation and feedback loops."
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi",
+  "pillow",
+  "pydantic",
+  "pypdf",
+  "uvicorn",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
